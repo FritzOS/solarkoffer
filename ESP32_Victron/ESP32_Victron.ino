@@ -104,7 +104,7 @@ int HSDS = 99999;    //[T] Tageszähler (0 bis 364)
 //-------------------------------------------------------------------------------------------------------------------
 //-- deep sleep -- deep sleep -- deep sleep -- deep sleep -- deep sleep -- deep sleep -- deep sleep -- deep sleep --- 
 //-------------------------------------------------------------------------------------------------------------------
-void goToSleep(int sleepSeconds) {
+void goToSleep(uint64_t sleepSeconds) {
   Radio.Sleep( );
 
   display.sleep();
@@ -126,7 +126,7 @@ void goToSleep(int sleepSeconds) {
   #ifdef SERIAL_P
     Serial.printf("Deep sleeping for %d seconds\n", sleepSeconds);
   #endif
-  esp_sleep_enable_timer_wakeup(sleepSeconds * 1000000);
+  esp_sleep_enable_timer_wakeup(sleepSeconds * (uint64_t)1000000);
   #ifdef SERIAL_P
     Serial.flush();
   #endif
